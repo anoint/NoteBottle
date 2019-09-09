@@ -711,6 +711,11 @@
     cssnano-preset-default "^4.0.0"
     postcss "^7.0.0"
 
+"@mdi/js@^4.3.95":
+  version "4.3.95"
+  resolved "https://registry.yarnpkg.com/@mdi/js/-/js-4.3.95.tgz#79e3253eeaa6e0cf02733c4c1f65c801d9d4b42c"
+  integrity sha512-dYJX1q1aDBIpHtTReCnmL4zigvmEPuXdVsw3Sn7190+k8vWaAc8UWMOlMag7S+Ym1C+jeO1S7zE5fdb1gBOB5A==
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.npm.taobao.org/@mrmlnc/readdir-enhanced/download/@mrmlnc/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
@@ -5119,6 +5124,11 @@ map-visit@^1.0.0:
   integrity sha1-7Nyo8TFE5mDxtb1B8S80edmN+48=
   dependencies:
     object-visit "^1.0.0"
+
+material-design-icons-iconfont@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/material-design-icons-iconfont/-/material-design-icons-iconfont-5.0.1.tgz#371875ed7fe9c8c520bc7123c3231feeab731c31"
+  integrity sha512-Xg6rIdGrfySTqiTZ6d+nQbcFepS6R4uKbJP0oAqyeZXJY/bX6mZDnOmmUJusqLXfhIwirs0c++a6JpqVa8RFvA==
 
 md5.js@^1.3.4:
   version "1.3.5"

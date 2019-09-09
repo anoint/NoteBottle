@@ -4,7 +4,6 @@ import router from './router'
 import Vuex from 'vuex'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
-
 Vue.use(Vuetify)
 Vue.use(Vuex)
 
