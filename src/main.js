@@ -10,7 +10,7 @@ Vue.use(Vuex)
 const AuthModule = {
   state: {
     isLogined: true,
-    token: ''
+    token: ' '
   },
   getters: {
     isLogined: state => {
