@@ -90,7 +90,6 @@ export default {
     setInterval(()=>{
       this.backgroundImage = this.imgItems[i].src
       i = (i+1)%4
-      console.log(this.backgroundImage)
     },8000)
   }
 };
