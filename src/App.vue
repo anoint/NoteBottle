@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" >
     <div id="nav" v-if="$router.currentRoute.name!='login'">
       <router-link to="/">Home</router-link>|
       <router-link to="/about">About</router-link>
@@ -64,7 +64,16 @@ export default {
       ],
       imgItems: [
         {
-          src: "./assets/bk.jpg"
+          src: "./assets/images/background/a.jpg"
+        },
+        {
+          src: "./assets/images/background/b.jpg"
+        },
+        {
+          src: "./assets/images/background/c.jpg"
+        },
+        {
+          src: "./assets/images/background/d.jpg"
         }
         // },
         // {
