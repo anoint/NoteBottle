@@ -4,6 +4,7 @@
     <vueper-slides>
       <vueper-slide v-for="(slide, i) in slides" :key="i" :title="slide.title" :content="slide.content"></vueper-slide>
     </vueper-slides>
+    <a href="#" @click="logout">logout</a>
   </div>
 </template>
 <script>
@@ -23,6 +24,11 @@ export default {
       content: 'Slide content.'
     } 
   ]
-})
+}),
+  methods: {
+    logout () {
+      this.$store.dispatch('logoutProcess').then(()=>{this.$router.push({name:'login'})})
+    }
+  }
 }
 </script>

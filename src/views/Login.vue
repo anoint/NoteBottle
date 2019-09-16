@@ -3,7 +3,7 @@
     <v-container>
       <v-row>
         <v-col>
-          {{$store.getters.isLogined}}
+          Login
         </v-col>
       </v-row>
       <v-row>
@@ -12,6 +12,7 @@
           md="12"
         >
           <v-text-field
+            dark
             v-model="id"
             :counter="10"
             label="ID"
@@ -24,6 +25,7 @@
           md="12"
         >
           <v-text-field
+           dark
             v-model="password"
             type="password"
             password
