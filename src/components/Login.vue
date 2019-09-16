@@ -25,6 +25,8 @@
         >
           <v-text-field
             v-model="password"
+            type="password"
+            password
             :counter="10"
             label="PW"
             required
