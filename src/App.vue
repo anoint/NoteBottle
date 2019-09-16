@@ -1,8 +1,9 @@
 <template>
   <div id="app">
-    <div id="nav">
+    <div id="nav" v-if="$router.currentRoute.name!='login'">
       <router-link to="/">Home</router-link>|
       <router-link to="/about">About</router-link>
+      <a href="#" @click="logout">logout</a>
     </div>
     <router-view />
   </div>
@@ -29,3 +30,13 @@
   color: #42b983;
 }
 </style>
+<script>
+export default {
+  
+  methods: {
+    logout () {
+      this.$store.dispatch('logoutProcess').then(()=>{this.$router.push({name:'login'})})
+    }
+  }
+}
+</script>

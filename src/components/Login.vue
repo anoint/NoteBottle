@@ -50,13 +50,10 @@
     }),
     methods: {
       login () {
-        this.$store.dispatch('loginProcess',{id:this.id,password:this.password}).then(()=>{
-          console.log(this.$store.state.auth)
+        this.$store.dispatch('loginProcess',{id:this.id,password:this.password}).then((res)=>{
+          this.$router.push({name:'home'})
         })
       }
-    },
-    mounted () {
-      console.log(this.$store.state.auth)
     }
   }
 </script>

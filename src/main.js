@@ -4,49 +4,12 @@ import router from './router'
 import Vuex from 'vuex'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
+import AuthModule from './vuex/auth'
+
+
 Vue.use(Vuetify)
 Vue.use(Vuex)
 
-const AuthModule = {
-  state: {
-    isLogined: true,
-    token: ''
-  },
-  getters: {
-    isLogined: state => {
-      return state.token!=='' && state.isLogined;
-    }
-  },
-  mutations: {
-    login (state) {
-      state.isLogined = true
-    },
-    logout (state) {
-      state.isLogined = false
-    },
-    saveToken (state, token) {
-      state.token = token
-    }
-  },
-  actions: {
-    loginProcess (context,data) {
-      return new Promise((resolve,reject)=>{
-        var xhr = new XMLHttpRequest();
-        xhr.open('post','http://notebottle.api.test/login',true);
-        xhr.onreadystatechange = ()=>{
-          if(xhr.readyState === 4 && xhr.status ===200){
-            context.commit('login')
-            context.commit('saveToken',xhr.responseText)
-          }
-        }
-        var params = 'id='+data.id+'&password='+data.password
-        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        xhr.send(params)
-      })
-      context.commit('login')
-    }
-  }
-}
 
 const mainStore = new Vuex.Store({
   modules: {
@@ -54,8 +17,26 @@ const mainStore = new Vuex.Store({
   }
 })
 
+router.beforeEach((to,from,next)=>{
+  if(mainStore.getters.isLogined)
+  {
+    return next();
+  }else if(to.name=='login'){
+    return next();
+  }else if(from.name!='login'){
+    router.push({name:'login'});
+  }
+});
 Vue.config.productionTip = false
-
+var cookies = document.cookie.split(';');
+cookies.forEach(cookie=>
+{
+  if(cookie.indexOf('notebottleToken')==0){
+    var value = cookie.split('=')[1];
+    mainStore.commit('login')
+    mainStore.commit('saveToken',value)
+  }
+})
 new Vue({
   router,
   Vuetify,
