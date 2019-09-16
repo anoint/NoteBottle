@@ -1,10 +1,5 @@
 <template>
   <div id="app" >
-    <div id="nav" v-if="$router.currentRoute.name!='login'">
-      <router-link to="/">Home</router-link>|
-      <router-link to="/about">About</router-link>
-      <a href="#" @click="logout">logout</a>
-    </div>
     <div class="main" :style="appStyle"> 
       <div class="dimmed">
 
@@ -12,7 +7,7 @@
       <div class="contents">
         <router-view />
       </div>
-      <div class="gnb-right-wrap">
+      <div class="gnb-right-wrap" v-if="$router.currentRoute.name!='login'">
         <!-- <div class="item"></div>
         <div class="item"></div>
         <div class="item"></div>
@@ -120,6 +115,8 @@ export default {
   padding-left:100px;
   padding-right:100px;
   background-size: cover;
+  transition: background 1.5s linear;
+  opacity: 1.0;
 }
 .contents {
   position: relative;
