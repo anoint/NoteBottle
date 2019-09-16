@@ -2,7 +2,7 @@
   <div id="app" >
     <div id="nav" v-if="$router.currentRoute.name!='login'">
       <router-link to="/">Home</router-link>|
-      <router-link to="/about">About</router-link>
+      <router-link to="/about">About</router-link>|
       <a href="#" @click="logout">logout</a>
     </div>
     <div class="main"> 
@@ -35,6 +35,7 @@
 
             <v-list dense>
               <v-list-item v-for="item in items" :key="item.title">
+                <div @click="gnb(item.title)">
                 <v-list-item-icon>
                   <v-icon>{{ item.icon }}</v-icon>
                 </v-list-item-icon>
@@ -42,6 +43,7 @@
                 <v-list-item-content>
                   <v-list-item-title>{{ item.title }}</v-list-item-title>
                 </v-list-item-content>
+                </div>
               </v-list-item>
             </v-list>
           </v-navigation-drawer>
@@ -57,10 +59,10 @@ export default {
   data() {
     return {
       items: [
-        { title: "Home", icon: "mdi-home-city" },
-        { title: "My Account", icon: "mdi-account" },
-        { title: "Users", icon: "mdi-account-group-outline" },
-        { title: "Users2", icon: "mdi-account-group-outline" }
+        { title: "내글", icon: "mdi-home-city" },
+        { title: "글쓰기", icon: "mdi-account" },
+        { title: "검색", icon: "mdi-account-group-outline" },
+        { title: "이전글보기", icon: "mdi-account-group-outline" }
       ],
       imgItems: [
         {
@@ -74,23 +76,38 @@ export default {
         },
         {
           src: "./assets/images/background/d.jpg"
-        }
-        // },
-        // {
-        //   src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg"
-        // },
-        // {
-        //   src: "https://cdn.vuetifyjs.com/images/carousel/bird.jpg"
-        // },
-        // {
-        //   src: "https://cdn.vuetifyjs.com/images/carousel/planet.jpg"
-        // }
+        } 
       ]
     };
   },
   methods: {
     logout () {
       this.$store.dispatch('logoutProcess').then(()=>{this.$router.push({name:'login'})})
+    },
+    gnb(menu)
+    {
+      if(menu === '내글')
+      {
+        //  this.$router.push('/post') 
+        this.$router.replace({ name: 'post' }).catch(err => { 
+        })
+      }
+      else if(menu === '글쓰기')
+      { 
+        this.$router.replace({ name: 'writing' }).catch(err => { 
+        })
+      }
+       else if(menu === '검색')
+      { 
+        this.$router.replace({ name: 'search' }).catch(err => { 
+        })
+      }
+       else if(menu === '이전글보기')
+      { 
+        this.$router.replace({ name: 'viewPre' }).catch(err => { 
+        })
+      }
+
     }
   }
 };
@@ -99,7 +116,8 @@ export default {
 <style>
 .theme--light.v-card,
 .theme--light.v-navigation-drawer {
-  background-color: transparent !important;
+  cursor: pointer;
+  /* background-color: transparent !important; */
   color: #fff !important;
 }
 .font-white {

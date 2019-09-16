@@ -1,6 +1,6 @@
 <template>
   <div class="div">
-    노트보틀
+    검색
     <v-text-field></v-text-field>
   </div>
 </template>

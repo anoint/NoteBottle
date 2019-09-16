@@ -5,8 +5,7 @@ import Vuex from 'vuex'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 import AuthModule from './vuex/auth'
-
-
+import '@mdi/font/css/materialdesignicons.css' 
 Vue.use(Vuetify)
 Vue.use(Vuex)
 
