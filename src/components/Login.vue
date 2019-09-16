@@ -3,7 +3,7 @@
     <v-container>
       <v-row>
         <v-col>
-          {{$store.getters.isLogined}}
+          Login
         </v-col>
       </v-row>
       <v-row>
