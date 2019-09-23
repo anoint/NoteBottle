@@ -13,13 +13,21 @@
         <v-card height="100%" dark style="z-index:1;">
           <v-navigation-drawer absolute permanent right> 
             <v-list style="height:100%">
-              <v-list-item class="white-text" v-for="item in items" :key="item.title" :style="{height:(100/(items.length))+'%'}">
-              <div @click="gnb(item.name)">
+              <v-list-item class="white-text" v-for="(item, index) in items" :key="item.title" :style="{height:(100/(items.length))+'%'}">
+              <div @click="gnb(item.name)" v-if="!($router.currentRoute.name!='home' && index===items.length-1)">
                 <v-list-item-icon>
                   <v-icon>{{ item.icon }}</v-icon>
                 </v-list-item-icon>
                 <v-list-item-content>
                   <v-list-item-title>{{ item.title }}</v-list-item-title>
+                </v-list-item-content>
+              </div>  
+              <div @click="gnb('home')" v-if="$router.currentRoute.name!='home' && index===items.length-1">
+                <v-list-item-icon>
+                  <v-icon>{{ item.icon }}</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>
+                  <v-list-item-title>글보기</v-list-item-title>
                 </v-list-item-content>
               </div>  
               </v-list-item>
