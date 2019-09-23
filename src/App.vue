@@ -24,7 +24,7 @@
               </div>  
               <div @click="gnb('home')" v-if="$router.currentRoute.name!='home' && index===items.length-1">
                 <v-list-item-icon>
-                  <v-icon>{{ item.icon }}</v-icon>
+                  <v-icon>mdi-equal-box</v-icon>
                 </v-list-item-icon>
                 <v-list-item-content>
                   <v-list-item-title>글보기</v-list-item-title>
@@ -45,10 +45,10 @@ export default {
   data() {
     return {
       items: [
-        { title: "내글", icon: "mdi-home-city", name : 'post'},
-        { title: "글쓰기", icon: "mdi-account", name : 'writing' },
-        { title: "검색", icon: "mdi-account-group-outline", name : 'search' },
-        { title: "이전글보기", icon: "mdi-account-group-outline", name : 'viewPre' }
+        { title: "내글", icon: "mdi-account-details", name : 'post'},
+        { title: "글쓰기", icon: "mdi-border-color", name : 'writing' },
+        { title: "검색", icon: "mdi-magnify", name : 'search' },
+        { title: "이전글보기", icon: "mdi-undo", name : 'viewPre' }
       ],
       backgroundImage:require("./assets/images/background/d.jpg"),
       imgItems: [
