@@ -7,7 +7,7 @@
       <div class="contents">
         <router-view />
       </div>
-      <div class="gnb-right-wrap" v-if="$router.currentRoute.name!='login'"> 
+      <div class="gnb-right-wrap" v-if="$router.currentRoute.name!='login' && $router.currentRoute.name!='signup'"> 
 
         <!-- Navigation drawers -->
         <v-card height="100%" dark style="z-index:1;">

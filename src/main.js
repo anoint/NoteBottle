@@ -17,10 +17,12 @@ const mainStore = new Vuex.Store({
 })
 
 router.beforeEach((to,from,next)=>{
+
+  
   if(mainStore.getters.isLogined)
   {
     return next();
-  }else if(to.name=='login'){
+  }else if(to.name=='login' || to.name=='signup' ){
     return next();
   }else if(from.name!='login'){
     router.push({name:'login'});
