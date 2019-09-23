@@ -1,6 +1,5 @@
 <template>
   <div>
-    this is home
     <vueper-slides>
       <vueper-slide v-for="(slide, i) in slides" :key="i" :title="slide.title" :content="slide.content"></vueper-slide>
     </vueper-slides>
@@ -28,7 +27,13 @@ export default {
   methods: {
     logout () {
       this.$store.dispatch('logoutProcess').then(()=>{this.$router.push({name:'login'})})
-    }
+    } 
+  },
+  mounted () {
+        this.$store.dispatch('pageProcess',{id:this.id}).then((res)=>{
+          
+          console.log(res.name);
+        })
   }
 }
 </script>

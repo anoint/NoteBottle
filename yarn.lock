@@ -8264,9 +8264,9 @@ vue@^2.6.10:
   integrity sha1-pysaQqTYKnIepDjRtr9V5mGVxjc=
 
 vueperslides@^1.20.1:
-  version "1.20.2"
-  resolved "https://registry.yarnpkg.com/vueperslides/-/vueperslides-1.20.2.tgz#9259f791d06f08c907a17fb53986a7c8e9817fcc"
-  integrity sha512-Lph7FiycwJLmT10PcWo7rw9sI8Zm0tCSwIax+3L1bSdaO8B7TkdxodCAGwpCiuMPCh2XrJbZL+gDF9qVU7qk7Q==
+  version "1.20.1"
+  resolved "https://registry.yarnpkg.com/vueperslides/-/vueperslides-1.20.1.tgz#3e61400036a648026612ced55a01b787a2fbfc71"
+  integrity sha512-B7efnDFXSBtJE++deiXUvwuKmyZztuudb0yXjEHwLaLExNgeVsuK4Cb0B19XDi1j+mwL4fZ3ErGBiTqbmJDdjA==
 
 vuetify@^2.0.11:
   version "2.0.11"

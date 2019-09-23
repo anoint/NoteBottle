@@ -7,26 +7,21 @@
       <div class="contents">
         <router-view />
       </div>
-      <div class="gnb-right-wrap" v-if="$router.currentRoute.name!='login'">
-        <!-- <div class="item"></div>
-        <div class="item"></div>
-        <div class="item"></div>
-        <div class="item"></div>-->
+      <div class="gnb-right-wrap" v-if="$router.currentRoute.name!='login' && $router.currentRoute.name!='signup'"> 
 
         <!-- Navigation drawers -->
         <v-card height="100%" dark style="z-index:1;">
-          <v-navigation-drawer absolute permanent right>
-
+          <v-navigation-drawer absolute permanent right> 
             <v-list style="height:100%">
               <v-list-item class="white-text" v-for="item in items" :key="item.title" :style="{height:(100/(items.length))+'%'}">
+              <div @click="gnb(item.name)">
                 <v-list-item-icon>
                   <v-icon>{{ item.icon }}</v-icon>
                 </v-list-item-icon>
-
                 <v-list-item-content>
                   <v-list-item-title>{{ item.title }}</v-list-item-title>
                 </v-list-item-content>
-                 
+              </div>  
               </v-list-item>
             </v-list>
           </v-navigation-drawer>
@@ -42,10 +37,10 @@ export default {
   data() {
     return {
       items: [
-        { title: "내글", icon: "mdi-home-city" },
-        { title: "글쓰기", icon: "mdi-account" },
-        { title: "검색", icon: "mdi-account-group-outline" },
-        { title: "이전글보기", icon: "mdi-account-group-outline" }
+        { title: "내글", icon: "mdi-home-city", name : 'post'},
+        { title: "글쓰기", icon: "mdi-account", name : 'writing' },
+        { title: "검색", icon: "mdi-account-group-outline", name : 'search' },
+        { title: "이전글보기", icon: "mdi-account-group-outline", name : 'viewPre' }
       ],
       backgroundImage:require("./assets/images/background/d.jpg"),
       imgItems: [
@@ -60,17 +55,7 @@ export default {
         },
         {
           src: require("./assets/images/background/d.jpg")
-        }
-        // },
-        // {
-        //   src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg"
-        // },
-        // {
-        //   src: "https://cdn.vuetifyjs.com/images/carousel/bird.jpg"
-        // },
-        // {
-        //   src: "https://cdn.vuetifyjs.com/images/carousel/planet.jpg"
-        // }
+        } 
       ]
     };
   },
@@ -85,30 +70,13 @@ export default {
     logout () {
       this.$store.dispatch('logoutProcess').then(()=>{this.$router.push({name:'login'})})
     },
-    gnb(menu)
+    gnb(name)
     {
-      if(menu === '내글')
-      {
+     
         //  this.$router.push('/post') 
-        this.$router.replace({ name: 'post' }).catch(err => { 
+        this.$router.replace({ name: name }).catch(err => { 
         })
-      }
-      else if(menu === '글쓰기')
-      { 
-        this.$router.replace({ name: 'writing' }).catch(err => { 
-        })
-      }
-       else if(menu === '검색')
-      { 
-        this.$router.replace({ name: 'search' }).catch(err => { 
-        })
-      }
-       else if(menu === '이전글보기')
-      { 
-        this.$router.replace({ name: 'viewPre' }).catch(err => { 
-        })
-      }
-
+      
     }
   },
   mounted () {
@@ -141,7 +109,7 @@ export default {
   padding-left:100px;
   padding-right:100px;
   background-size: cover;
-  transition: background 1.5s linear;
+  transition: background 0.5s linear;
   opacity: 1.0;
 }
 .contents {

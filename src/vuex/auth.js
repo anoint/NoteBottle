@@ -39,6 +39,22 @@ const auth = {
           xhr.send(params)
         })
       },
+      signUpProcess (context,data) {
+        return new Promise((resolve,reject)=>{
+          var xhr = new XMLHttpRequest();
+          xhr.open('post','http://notebottle.api.test/register',true);
+          xhr.onreadystatechange = ()=>{
+            if(xhr.readyState === 4 && xhr.status ===200){  
+              resolve(xhr)
+            }else if(xhr.readyState === 4 && xhr.status !==200){
+              reject(xhr)
+            }
+          }
+          var params = 'id='+data.id+'&password='+data.password+'&name='+data.name
+          xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+          xhr.send(params)
+        })
+      },
       logoutProcess (context,data) {
         return new Promise((resolve,rejesct)=>{
           context.commit('logout')
