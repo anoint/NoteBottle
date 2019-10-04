@@ -130,7 +130,7 @@ export default {
   background: rgba(0,0,0,0.4);
 }
 .gnb-right-wrap {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   width: 14%;
