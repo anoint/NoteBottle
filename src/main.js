@@ -5,7 +5,8 @@ import Vuex from 'vuex'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 import AuthModule from './vuex/auth'
-import '@mdi/font/css/materialdesignicons.css' 
+import '@mdi/font/css/materialdesignicons.css'
+const vuetifyOptions = { } 
 Vue.use(Vuetify)
 Vue.use(Vuex)
 
@@ -40,7 +41,7 @@ cookies.forEach(cookie=>
 })
 new Vue({
   router,
-  Vuetify,
+  vuetify: new Vuetify(vuetifyOptions),
   store:mainStore,
   render: h => h(App)
 }).$mount('#app')
