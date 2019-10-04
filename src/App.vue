@@ -2,8 +2,8 @@
   <div id="app" >
     <div class="main" :style="appStyle"> 
       <div class="dimmed">
-
       </div>
+      <h1 class="logo">NOTE BOTTLE</h1>
       <div class="contents">
         <router-view />
       </div>
@@ -123,17 +123,25 @@ export default {
 .main {
   min-height: 100vh;
   position: relative;
-  padding-top:25vh;
+  padding-top:15vh;
   padding-left:100px;
   padding-right:100px;
   background-size: cover;
   transition: background 0.5s linear;
   opacity: 1.0;
 }
+.logo{
+  color:white;
+  font-size:80pt; 
+  z-index:3;
+  margin-top:0; 
+  width:89%;
+  margin-bottom:20px
+}
 .contents {
   position: relative;
   margin:0 auto;
-  width: 70%;
+   width:89%;
   height: 100%;
   color:white;
   z-index: 2;

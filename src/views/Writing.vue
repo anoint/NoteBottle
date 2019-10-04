@@ -1,10 +1,16 @@
 <template>
   <div class="div">
     <v-textarea ref="text"
-    :dark="true"
+    dark
     v-model="content"
     ></v-textarea>
-    
+    <v-combobox
+      v-model="tags"
+      dark
+      hide-selected
+      multiple
+      small-chips
+    ></v-combobox>
     <v-btn @click="register">
     등록하기
     </v-btn>
@@ -72,15 +78,9 @@ export default {
   data () {
     return {
       content:'',
-        select: ['Vuetify', 'Programming'],
-        items: [
-          'Programming',
-          'Design',
-          'Vue',
-          'Vuetify',
-        ]
-      }
-    },
+      tags:[]
+    }
+  },
   mounted () {
     this.$refs.text.focus()
   },
@@ -97,6 +97,11 @@ export default {
           }
         }
         var params = 'token='+token+'&content='+this.content
+        if(this.tags.length){
+          for(var item of this.tags){
+            params += ('&tags[]='+item)
+          }
+        }
         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         xhr.send(params)
     }
