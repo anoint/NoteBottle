@@ -1,6 +1,6 @@
 <template>
   <div>
-    <vueper-slides>
+    <vueper-slides :bullets=false>
       <vueper-slide v-for="(slide, i) in slides" :key="i" :title="slide.dt" :content="slide.content" ></vueper-slide>
     </vueper-slides>
     <a href="#" @click="logout">logout</a>

@@ -44,6 +44,7 @@
 export default {
   data() {
     return {
+      routerName : this.$router.currentRoute.name,
       items: [
         { title: "내글", icon: "mdi-account-details", name : 'post'},
         { title: "글쓰기", icon: "mdi-border-color", name : 'writing' },
@@ -64,35 +65,44 @@ export default {
         {
           src: require("./assets/images/background/d.jpg")
         } 
-      ]
+      ],
     };
   },
   computed: {
       appStyle () { 
-        return {
-          "background-image":"url('"+this.backgroundImage+"')"
+        if(this.routerName == 'post')
+        {
+          return {
+            "background-image":'none'
+          }
+        } else {
+          return {
+            "background-image":"url('"+this.backgroundImage+"')"
+          }
         }
       }
   },
   methods: {
+    
     logout () {
       this.$store.dispatch('logoutProcess').then(()=>{this.$router.push({name:'login'})})
     },
     gnb(name)
     {
-     
-        //  this.$router.push('/post') 
+      
+      //  this.$router.push('/post') 
         this.$router.replace({ name: name }).catch(err => { 
-        })
+          })
+          this.routerName = name
       
     }
   },
   mounted () {
     var i = 0;
-    setInterval(()=>{
-      this.backgroundImage = this.imgItems[i].src
-      i = (i+1)%4
-    },8000)
+    // setInterval(()=>{
+    //   this.backgroundImage = this.imgItems[i].src
+    //   i = (i+1)%4
+    // },8000)
   }
 };
 </script>
