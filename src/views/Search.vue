@@ -1,10 +1,10 @@
 <template>
   <div class="div">
-    검색
-    <v-text-field dark></v-text-field>
+    <v-text-field dark @keydown.enter="searchKeyword(keyword)" v-model="keyword"></v-text-field>
     <div class="row">
       <div class="col-md-6" v-for="(tag, index) in tags" :key="index">
         <v-card
+        @click="searchTag(tag.name)"
         >
           <v-card-text style="line-height:100px">{{tag.name}}</v-card-text>
         </v-card>
@@ -17,7 +17,8 @@
 export default {
   data () {
     return {
-      tags:[]
+      tags:[],
+      keyword:""
     }
   },
   methods: {
@@ -33,6 +34,12 @@ export default {
           }
         }
         xhr.send()
+    },
+    searchTag(tag){
+      this.$router.push({name:'result',query:{tag:tag}})
+    },
+    searchKeyword(keyword){
+      this.$router.push({name:'result',query:{keyword:keyword}})
     }
   },
   mounted () {
