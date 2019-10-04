@@ -1,11 +1,18 @@
-import Vue from 'vue'
+
 import App from './App.vue'
-import router from './router'
+import {Vue,router} from './router'
 import Vuex from 'vuex'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 import AuthModule from './vuex/auth'
 import '@mdi/font/css/materialdesignicons.css' 
+import en from 'vuetify/es5/locale/en'
+const vuetify = new Vuetify({
+  lang:{
+    locales: {en},
+    current:'en'
+  }
+})
 Vue.use(Vuetify)
 Vue.use(Vuex)
 
@@ -40,7 +47,7 @@ cookies.forEach(cookie=>
 })
 new Vue({
   router,
-  Vuetify,
+  vuetify,
   store:mainStore,
   render: h => h(App)
 }).$mount('#app')
