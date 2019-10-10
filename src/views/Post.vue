@@ -20,8 +20,8 @@
                 <v-card-text>{{slide.content}}</v-card-text>
                 {{slide.id}}
                 <v-card-actions>
-                  <v-btn text @click="postUpdate()">수정</v-btn>
-                  <v-btn text @click="postDelete(slide.id)">삭제</v-btn>
+                  <v-btn text @click="goEdit(slide.id)">수정</v-btn>
+                  <v-btn text @click="postDelete()">삭제</v-btn>
                 </v-card-actions>
               </v-card> 
           </v-card-text>
@@ -89,6 +89,9 @@ export default {
     searchTag(tag){
       this.$router.push({name:'result',query:{tag:tag}})
     },
+    goEdit(id){
+      this.$router.push({name:'edit',params:{id:id}})
+    }
   },
   mounted () {
     this.postView();
@@ -104,12 +107,4 @@ export default {
     font-size:10px;
     margin-bottom: 10px;
 } 
-.div
-{
-  width: 932px;
-  height: auto;
-  position: absolute;
-  top: 0px;
-  left:0px;
-}
 </style>

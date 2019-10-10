@@ -11,7 +11,7 @@
                 <v-card-title>{{slide.dt}}</v-card-title>
                 <v-card-text>{{slide.content}}</v-card-text>
                 <v-card-actions>
-                  <v-btn text>수정</v-btn>
+                  <v-btn text @click="goEdit(slide.id)">수정</v-btn>
                   <v-btn text>삭제</v-btn>
                 </v-card-actions>
               </v-card> 
@@ -34,9 +34,12 @@ export default {
         axios.get('http://notebottle.api.test/search'+query).then(res=>{
             let posts = res.data;
             for (var post of posts) { 
-              this.slides.push({dt:post.created_at,content:post.content}); 
+              this.slides.push({dt:post.created_at,content:post.content,id:post.id}); 
             }
         })
+    },
+    goEdit(id){
+      this.$router.push({name:'edit',params:{id:id}})
     }
   },
   mounted () {
