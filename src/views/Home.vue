@@ -1,10 +1,21 @@
 <template>
-  <div>
-    <vueper-slides :bullets=false>
-      <vueper-slide v-for="(slide, i) in slides" :key="i" :title="slide.dt" :content="slide.content" ></vueper-slide>
-    </vueper-slides>
-    <a href="#" @click="logout">logout</a>
-  </div>
+  <v-app>
+    <v-container>
+      <vueper-slides :bullets=false>
+        <vueper-slide v-for="(slide, i) in slides" :key="i" :image="imgItems[i % 4].src" >
+          <div slot="slideContent">
+            <div style="background:rgba(0,0,0,0.4);">
+              <p style="text-align:left">
+              <small style="color:white">{{slide.dt}}</small>
+              </p>
+              <p style="color:white; font-weight:bold">{{slide.content}}</p>
+            </div>
+        </div>
+        </vueper-slide>
+      </vueper-slides>
+    </v-container>
+    <!-- <a href="#" @click="logout">logout</a> -->
+  </v-app>
 </template>
 <script>
 /* eslint-disable */
@@ -14,7 +25,22 @@ export default {
   components: { VueperSlides, VueperSlide } ,
   data: () => ({
   slides: [ 
-  ] 
+  ],
+  
+  imgItems: [
+    {
+      src: require("../assets/images/background/a.jpg")
+    },
+    {
+      src: require("../assets/images/background/b.jpg")
+    },
+    {
+      src: require("../assets/images/background/c.jpg")
+    },
+    {
+      src: require("../assets/images/background/d.jpg")
+    } 
+  ],
 }),
   methods: {
     logout () {
