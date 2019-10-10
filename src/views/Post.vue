@@ -19,8 +19,8 @@
                 <v-card-title>{{slide.dt}}</v-card-title>
                 <v-card-text>{{slide.content}}</v-card-text>
                 <v-card-actions>
-                  <v-btn text>수정</v-btn>
-                  <v-btn text>삭제</v-btn>
+                  <v-btn text @click="postUpdate()">수정</v-btn>
+                  <v-btn text @click="postDelete()">삭제</v-btn>
                 </v-card-actions>
               </v-card> 
           </v-card-text>
@@ -54,6 +54,22 @@ export default {
             this.slides.push({dt:post.created_at,content:post.content}); 
           }
         }.bind(this));
+    },
+    postDelete()
+    {
+      if(confirm("삭제하시겠습니까?"))
+      {
+        var token = this.$store.state.auth.token
+        var xhr = new XMLHttpRequest();
+        xhr.open('get','http://notebottle.api.test/page/remove',true);
+        xhr.onreadystatechange = ()=> {
+          if(xhr.readyState === 4 && (xhr.status ===200 || xhr.status ===201)){ 
+            
+          } 
+        } 
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhr.send()
+      }
     },
     tagView () {
         axios.get('http://notebottle.api.test/tag/list')
