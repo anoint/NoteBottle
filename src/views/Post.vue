@@ -28,7 +28,7 @@
         </v-card>
       </v-tab-item>
       <v-tab-item>
-        <v-card v-for="(tag,index) in tags" :key="index">
+        <v-card v-for="(tag,index) in tags" :key="index" @click="searchTag(tag.name)">
           <v-card-text>
             {{tag.name}}
           </v-card-text>
@@ -82,7 +82,10 @@ export default {
             this.tags.push(tag); 
           }
         }.bind(this))
-    }
+    },
+    searchTag(tag){
+      this.$router.push({name:'result',query:{tag:tag}})
+    },
   },
   mounted () {
     this.postView();
