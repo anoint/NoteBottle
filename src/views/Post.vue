@@ -27,9 +27,9 @@
         </v-card>
       </v-tab-item>
       <v-tab-item>
-        <v-card flat>
+        <v-card v-for="(tag,index) in tags" :key="index">
           <v-card-text>
-            asdfdsf
+            {{tag.name}}
           </v-card-text>
         </v-card>
       </v-tab-item>
@@ -42,27 +42,32 @@
 export default {
  data: () => ({
       slides: [ 
-      ] 
+      ],
+      tags: [] 
     }),
   methods: {
     postView () {
-        var token = this.$store.state.auth.token
-        var xhr = new XMLHttpRequest();
-        xhr.open('get','http://notebottle.api.test/page/list',true);
-        xhr.onreadystatechange = ()=>{
-          if(xhr.readyState === 4 && (xhr.status ===200 || xhr.status ===201)){ 
-            let posts = JSON.parse(xhr.response);
-            for (var post of posts) { 
-              this.slides.push({dt:post.created_at,content:post.content}); 
-            }
-          } 
-        } 
-        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        xhr.send()
+        var token = this.$store.state.auth.token;
+        axios.get('http://notebottle.api.test/page/list').then(function(res){
+          let posts = res.data;
+          for (var post of posts) { 
+            this.slides.push({dt:post.created_at,content:post.content}); 
+          }
+        }.bind(this));
+    },
+    tagView () {
+        axios.get('http://notebottle.api.test/tag/list')
+        .then(function(res){
+          let tags = res.data;
+          for (var tag of tags) { 
+            this.tags.push(tag); 
+          }
+        }.bind(this))
     }
   },
   mounted () {
-    this.postView()
+    this.postView();
+    this.tagView();
   }
 };
 </script>
