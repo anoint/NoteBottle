@@ -30,23 +30,16 @@ export default {
   methods: {
     postView () {
         var token = this.$store.state.auth.token
-        var xhr = new XMLHttpRequest();
         var query = this.$router.currentRoute.fullPath.replace('/result','');
-        xhr.open('get','http://notebottle.api.test/search'+query,true);
-        xhr.onreadystatechange = ()=>{
-          if(xhr.readyState === 4 && (xhr.status ===200 || xhr.status ===201)){ 
-            let posts = JSON.parse(xhr.response);
+        axios.get('http://notebottle.api.test/search'+query).then(res=>{
+            let posts = res.data;
             for (var post of posts) { 
               this.slides.push({dt:post.created_at,content:post.content}); 
             }
-          } 
-        } 
-        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        xhr.send()
+        })
     }
   },
   mounted () {
-      console.log();
     this.postView()
   }
 };

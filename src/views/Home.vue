@@ -22,18 +22,13 @@ export default {
     },
     postView () {
         var token = this.$store.state.auth.token
-        var xhr = new XMLHttpRequest();
-        xhr.open('get','http://notebottle.api.test/page/list',true);
-        xhr.onreadystatechange = ()=>{
-          if(xhr.readyState === 4 && (xhr.status ===200 || xhr.status ===201)){ 
-            let posts = JSON.parse(xhr.response);
+        axios.get('http://notebottle.api.test/page/list')
+        .then(function(res){
+            let posts = res.data;
             for (var post of posts) { 
               this.slides.push({dt:post.created_at,content:post.content}); 
             }
-          } 
-        } 
-        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        xhr.send()
+        }.bind(this))
     }
   },
   mounted () {

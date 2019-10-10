@@ -24,16 +24,9 @@ export default {
   methods: {
     load () {
         var token = this.$store.state.auth.token
-        var xhr = new XMLHttpRequest();
-        xhr.open('get','http://notebottle.api.test/tag/list',true);
-        xhr.onreadystatechange = ()=>{
-          if(xhr.readyState === 4 && (xhr.status ===200 || xhr.status ===201)){
-            this.tags = JSON.parse(xhr.responseText)
-          }else if(xhr.readyState === 4 && xhr.status !==200){
-            alert('실패했습니다')
-          }
-        }
-        xhr.send()
+        axios.get('http://notebottle.api.test/tag/list').then(res=>{
+            this.tags = res.data
+        })
     },
     searchTag(tag){
       this.$router.push({name:'result',query:{tag:tag}})

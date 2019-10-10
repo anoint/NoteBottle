@@ -31,23 +31,16 @@ export default {
   methods: {
     register () {
         var token = this.$store.state.auth.token
-        var xhr = new XMLHttpRequest();
-        xhr.open('post','http://notebottle.api.test/page/store',true);
-        xhr.onreadystatechange = ()=>{
-          if(xhr.readyState === 4 && (xhr.status ===200 || xhr.status ===201)){
-            this.$router.push({name:'post'})
-          }else if(xhr.readyState === 4 && xhr.status !==200){
-            alert('실패했습니다')
-          }
+        var data ={
+          token:token,
+          content:this.content
         }
-        var params = 'token='+token+'&content='+this.content
         if(this.tags.length){
-          for(var item of this.tags){
-            params += ('&tags[]='+item)
-          }
+          data.tags=this.tags
         }
-        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        xhr.send(params)
+        axios.post('http://notebottle.api.test/page/store',data).then(res=>{
+            this.$router.push({name:'post'})
+        })
     }
   }
 };
