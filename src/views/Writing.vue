@@ -1,20 +1,36 @@
 <template>
-  <div class="div">
+<v-app>
+  <v-container>
+  <v-row>
+    <v-col>
     <v-textarea ref="text"
-    dark
+      background-color="grey lighten-4"
+      color="orange orange-darken-4"
     v-model="content"
     ></v-textarea>
-    <v-combobox
-      v-model="tags"
-      dark
-      hide-selected
-      multiple
-      small-chips
-    ></v-combobox>
-    <v-btn @click="register">
-    등록하기
-    </v-btn>
-  </div>
+    </v-col>
+  </v-row>
+  <v-row>
+    <v-col>
+      <v-combobox
+        background-color="grey lighten-4"
+        color="orange orange-darken-4"
+        v-model="tags"
+        hide-selected
+        multiple
+        small-chips
+      ></v-combobox>
+    </v-col>
+  </v-row>
+  <v-row>
+    <v-col>
+      <v-btn @click="register">
+      등록하기
+      </v-btn>
+    </v-col>  
+  </v-row>
+  </v-container>
+</v-app>
 </template>
 
 <script>

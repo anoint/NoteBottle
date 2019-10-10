@@ -1,11 +1,9 @@
 <template>
   <div id="app" >
-    <div class="main" :style="appStyle"> 
-      <div class="dimmed">
-      </div>
+    <div class="main"> 
       <h1 class="logo">NOTE BOTTLE</h1>
       <div class="contents">
-        <router-view />
+        <router-view style="margin:0 auto" />
       </div>
       <div class="gnb-right-wrap" v-if="$router.currentRoute.name!='login' && $router.currentRoute.name!='signup'"> 
 
@@ -14,7 +12,7 @@
           <v-navigation-drawer absolute permanent right> 
             <v-list style="height:100%">
               <v-list-item class="white-text" v-for="(item, index) in items" :key="item.title" :style="{height:(100/(items.length))+'%'}">
-              <div @click="gnb(item.name)" v-if="!($router.currentRoute.name!='home' && index===items.length-1)">
+              <div style="margin: 0 auto" @click="gnb(item.name)" v-if="!($router.currentRoute.name!='home' && index===items.length-1)">
                 <v-list-item-icon>
                   <v-icon>{{ item.icon }}</v-icon>
                 </v-list-item-icon>
@@ -22,7 +20,7 @@
                   <v-list-item-title>{{ item.title }}</v-list-item-title>
                 </v-list-item-content>
               </div>  
-              <div @click="gnb('home')" v-if="$router.currentRoute.name!='home' && index===items.length-1">
+              <div style="margin: 0 auto" @click="gnb('home')" v-if="$router.currentRoute.name!='home' && index===items.length-1">
                 <v-list-item-icon>
                   <v-icon>mdi-equal-box</v-icon>
                 </v-list-item-icon>
@@ -51,7 +49,7 @@ export default {
         { title: "검색", icon: "mdi-magnify", name : 'search' },
         { title: "이전글보기", icon: "mdi-undo", name : 'viewPre' }
       ],
-      backgroundImage:require("./assets/images/background/d.jpg"),
+      backgroundImage:"none",
       imgItems: [
         {
           src: require("./assets/images/background/a.jpg")
@@ -67,20 +65,6 @@ export default {
         } 
       ],
     };
-  },
-  computed: {
-      appStyle () { 
-        if(this.routerName == 'post')
-        {
-          return {
-            "background-image":'none'
-          }
-        } else {
-          return {
-            "background-image":"url('"+this.backgroundImage+"')"
-          }
-        }
-      }
   },
   methods: {
     
@@ -121,9 +105,8 @@ export default {
   height: 100% !important;
 }
 .main {
-  min-height: 100vh;
   position: relative;
-  padding-top:15vh;
+  padding-top:8vh;
   padding-left:100px;
   padding-right:100px;
   background-size: cover;
@@ -131,8 +114,8 @@ export default {
   opacity: 1.0;
 }
 .logo{
-  color:white;
-  font-size:80pt; 
+  text-align: left;
+  font-size:20pt; 
   z-index:3;
   margin-top:0; 
   width:89%;
@@ -140,18 +123,16 @@ export default {
 }
 .contents {
   position: relative;
-  margin:0 auto;
-   width:89%;
-  height: 100%;
+  width:91%;
   color:white;
   z-index: 2;
-  background: rgba(0,0,0,0.4);
+  border:1px #e0e0e0 solid;
 }
 .gnb-right-wrap {
   position: fixed;
   top: 0;
   right: 0;
-  width: 14%;
+  width: 9%;
   height: 100%;
   background: transparent;
   z-index: 3;
