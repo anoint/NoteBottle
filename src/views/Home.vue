@@ -1,6 +1,6 @@
 <template>
   <div>
-    <vueper-slides :bullets=false>
+    <vueper-slides :bullets=false @before-slide="beforeSlide" @slide="NextSlide">
       <vueper-slide v-for="(slide, i) in slides" :key="i" :title="slide.dt" :content="slide.content" ></vueper-slide>
     </vueper-slides>
     <a href="#" @click="logout">logout</a>
@@ -17,6 +17,12 @@ export default {
   ] 
 }),
   methods: {
+    beforeSlide (eventName, params) {
+    this.events += ` ${eventName},  ${JSON.stringify(params, null, 0)}`
+    },
+    NextSlide(eventName, params) {
+    this.events += ` ${eventName},  ${JSON.stringify(params, null, 0)}`
+    },
     logout () {
       this.$store.dispatch('logoutProcess').then(()=>{this.$router.push({name:'login'})})
     },

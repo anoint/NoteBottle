@@ -15,7 +15,7 @@
       <v-tab-item>
         <v-card flat>
           <v-card-text>
-            <v-card max-width="99.8%" class="mx-auto" v-for="(slide, i) in slides" :key="i">
+            <v-card max-width="99.8%" class="mx-auto" v-for="(slide, i) in slides" :key="i" @click="postDetail(slide.id)">
                 <v-card-title>{{slide.dt}}</v-card-title>
                 <v-card-text>{{slide.content}}</v-card-text>
                 {{slide.id}}
@@ -47,6 +47,9 @@ export default {
       tags: [] 
     }),
   methods: {
+    postDetail(id) { 
+        this.$router.push({name:'detail',query:{id:id}})
+    },
     postView () {
         var token = this.$store.state.auth.token;
         axios.get('http://notebottle.api.test/page/list').then(function(res){
@@ -58,17 +61,17 @@ export default {
     },
     postDelete(id)
     {
+      console.log(id)
       if(confirm("삭제하시겠습니까?"))
       {
-        this.$axios.get('http://notebottle.api.test/page/remove',
-        {
-          id : this.id
-        }
-        )
+        axios.get('http://notebottle.api.test/page/remove/'+id)
         .then((result) => {
           console.log('삭제되었습니다.')
+          this.slides = [];
+          this.postView();
         })
         .catch((err) => {
+          console.log(err)
           console.log('오류입니다.')
 
         })
