@@ -7,6 +7,7 @@ import 'vuetify/dist/vuetify.min.css'
 import AuthModule from './vuex/auth'
 import '@mdi/font/css/materialdesignicons.css' 
 import en from 'vuetify/es5/locale/en'
+import axios from 'axios'
 const vuetify = new Vuetify({
   lang:{
     locales: {en},
@@ -15,6 +16,7 @@ const vuetify = new Vuetify({
 })
 Vue.use(Vuetify)
 Vue.use(Vuex)
+window.axios = axios;
 
 
 const mainStore = new Vuex.Store({
