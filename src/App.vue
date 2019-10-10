@@ -12,7 +12,7 @@
           <v-navigation-drawer absolute permanent right> 
             <v-list style="height:100%">
               <v-list-item class="white-text" v-for="(item, index) in items" :key="item.title" :style="{height:(100/(items.length))+'%'}">
-              <div style="margin: 0 auto" @click="gnb(item.name)" v-if="!($router.currentRoute.name!='home' && index===items.length-1)">
+              <div style="margin: 0 auto" @click="gnb(item.name)" v-if="!($router.currentRoute.name=='home' && index===items.length-1)">
                 <v-list-item-icon>
                   <v-icon>{{ item.icon }}</v-icon>
                 </v-list-item-icon>
@@ -20,12 +20,12 @@
                   <v-list-item-title>{{ item.title }}</v-list-item-title>
                 </v-list-item-content>
               </div>  
-              <div style="margin: 0 auto" @click="gnb('home')" v-if="$router.currentRoute.name!='home' && index===items.length-1">
+              <div style="margin: 0 auto" v-if="$router.currentRoute.name=='home' && index===items.length-1">
                 <v-list-item-icon>
-                  <v-icon>mdi-equal-box</v-icon>
+                  <v-icon>mdi-undo</v-icon>
                 </v-list-item-icon>
                 <v-list-item-content>
-                  <v-list-item-title>글보기</v-list-item-title>
+                  <v-list-item-title>이전글보기</v-list-item-title>
                 </v-list-item-content>
               </div>  
               </v-list-item>
@@ -47,7 +47,7 @@ export default {
         { title: "내글", icon: "mdi-account-details", name : 'post'},
         { title: "글쓰기", icon: "mdi-border-color", name : 'writing' },
         { title: "검색", icon: "mdi-magnify", name : 'search' },
-        { title: "이전글보기", icon: "mdi-undo", name : 'viewPre' }
+        { title: "글보기", icon: "mdi-equal-box", name : 'home' }
       ],
       backgroundImage:"none",
       imgItems: [
