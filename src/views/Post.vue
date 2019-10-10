@@ -15,9 +15,10 @@
       <v-tab-item>
         <v-card flat>
           <v-card-text>
-            <v-card max-width="99.8%" class="mx-auto" v-for="(slide, i) in slides" :key="i">
+            <v-card max-width="99.8%" class="mx-auto" v-for="(slide, i) in slides" :key="i" @click="postDetail(slide.id)">
                 <v-card-title>{{slide.dt}}</v-card-title>
                 <v-card-text>{{slide.content}}</v-card-text>
+                {{slide.id}}
                 <v-card-actions>
                   <v-btn text @click="goEdit(slide.id)">수정</v-btn>
                   <v-btn text @click="postDelete()">삭제</v-btn>
@@ -46,6 +47,9 @@ export default {
       tags: [] 
     }),
   methods: {
+    postDetail(id) { 
+        this.$router.push({name:'detail',query:{id:id}})
+    },
     postView () {
         var token = this.$store.state.auth.token;
         axios.get('http://notebottle.api.test/page/list').then(function(res){
@@ -55,20 +59,22 @@ export default {
           }
         }.bind(this));
     },
-    postDelete()
+    postDelete(id)
     {
+      console.log(id)
       if(confirm("삭제하시겠습니까?"))
       {
-        var token = this.$store.state.auth.token
-        var xhr = new XMLHttpRequest();
-        xhr.open('get','http://notebottle.api.test/page/remove',true);
-        xhr.onreadystatechange = ()=> {
-          if(xhr.readyState === 4 && (xhr.status ===200 || xhr.status ===201)){ 
-            
-          } 
-        } 
-        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        xhr.send()
+        axios.get('http://notebottle.api.test/page/remove/'+id)
+        .then((result) => {
+          console.log('삭제되었습니다.')
+          this.slides = [];
+          this.postView();
+        })
+        .catch((err) => {
+          console.log(err)
+          console.log('오류입니다.')
+
+        })
       }
     },
     tagView () {
