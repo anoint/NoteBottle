@@ -1,18 +1,18 @@
 <template>
   <div id="app" >
     <div class="main"> 
-      <h1 class="logo">NOTE BOTTLE</h1>
-      <div class="contents">
-        <router-view style="margin:0 auto" />
+      <h1 class="logo">NOTE BOTTLE  <v-icon style="color:#2196F3">mdi-message</v-icon> </h1>
+      <div class="contents override">
+        <router-view ref="rView" style="margin:0 auto" />
       </div>
       <div class="gnb-right-wrap" v-if="$router.currentRoute.name!='login' && $router.currentRoute.name!='signup'"> 
 
         <!-- Navigation drawers -->
-        <v-card height="100%" dark style="z-index:1;">
-          <v-navigation-drawer absolute permanent right> 
+        <v-card height="100%" style="z-index:1;">
+          <v-navigation-drawer absolute permanent right dark style=" background-color:#1E88E5"> 
             <v-list style="height:100%">
-              <v-list-item class="white-text" v-for="(item, index) in items" :key="item.title" :style="{height:(100/(items.length))+'%'}">
-              <div style="margin: 0 auto" @click="gnb(item.name)" v-if="!($router.currentRoute.name!='home' && index===items.length-1)">
+              <v-list-item class="white-text" style="cursor:pointer" v-for="(item, index) in items" :key="item.title" :style="{height:(100/(items.length))+'%'}">
+              <div style="margin: 0 auto" @click="gnb(item.name)" v-if="!($router.currentRoute.name=='home' && index===items.length-1)">
                 <v-list-item-icon>
                   <v-icon>{{ item.icon }}</v-icon>
                 </v-list-item-icon>
@@ -20,12 +20,12 @@
                   <v-list-item-title>{{ item.title }}</v-list-item-title>
                 </v-list-item-content>
               </div>  
-              <div style="margin: 0 auto" @click="gnb('home')" v-if="$router.currentRoute.name!='home' && index===items.length-1">
+              <div style="margin: 0 auto" v-if="$router.currentRoute.name=='home' && index===items.length-1" @click="beforePost">
                 <v-list-item-icon>
-                  <v-icon>mdi-equal-box</v-icon>
+                  <v-icon>mdi-undo</v-icon>
                 </v-list-item-icon>
                 <v-list-item-content>
-                  <v-list-item-title>글보기</v-list-item-title>
+                  <v-list-item-title>이전글보기</v-list-item-title>
                 </v-list-item-content>
               </div>  
               </v-list-item>
@@ -47,7 +47,7 @@ export default {
         { title: "내글", icon: "mdi-account-details", name : 'post'},
         { title: "글쓰기", icon: "mdi-border-color", name : 'writing' },
         { title: "검색", icon: "mdi-magnify", name : 'search' },
-        { title: "이전글보기", icon: "mdi-undo", name : 'viewPre' }
+        { title: "글보기", icon: "mdi-equal-box", name : 'home' }
       ],
       backgroundImage:"none",
       imgItems: [
@@ -79,6 +79,10 @@ export default {
           })
           this.routerName = name
       
+    },
+    beforePost()
+    {
+      this.$refs.rView.$emit('prev');
     }
   },
   mounted () {
@@ -92,10 +96,8 @@ export default {
 </script>
 
 <style>
-.theme--light.v-card,
 .theme--light.v-navigation-drawer {
   cursor: pointer;
-  /* background-color: transparent !important; */
   color: #fff !important;
 }
 .font-white {
@@ -126,7 +128,6 @@ export default {
   width:91%;
   color:white;
   z-index: 2;
-  border:1px #e0e0e0 solid;
 }
 .gnb-right-wrap {
   position: fixed;

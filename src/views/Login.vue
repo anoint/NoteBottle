@@ -1,4 +1,6 @@
 <template>
+  <v-app>
+    <v-container>
   <v-form v-model="valid">
     <v-container>
       <v-row>
@@ -12,7 +14,6 @@
           md="12"
         >
           <v-text-field
-            dark
             v-model="id"
             :counter="10"
             label="ID"
@@ -25,7 +26,6 @@
           md="12"
         >
           <v-text-field
-           dark
             v-model="password"
             type="password"
             password
@@ -47,6 +47,8 @@
       </v-row>
     </v-container>
   </v-form>
+    </v-container>
+  </v-app>
 </template>
 <script>
   export default {
