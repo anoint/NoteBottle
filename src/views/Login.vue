@@ -12,7 +12,6 @@
           md="12"
         >
           <v-text-field
-            dark
             v-model="id"
             :counter="10"
             label="ID"
@@ -25,7 +24,6 @@
           md="12"
         >
           <v-text-field
-           dark
             v-model="password"
             type="password"
             password
