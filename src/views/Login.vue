@@ -1,4 +1,6 @@
 <template>
+  <v-app>
+    <v-container>
   <v-form v-model="valid">
     <v-container>
       <v-row>
@@ -45,6 +47,8 @@
       </v-row>
     </v-container>
   </v-form>
+    </v-container>
+  </v-app>
 </template>
 <script>
   export default {

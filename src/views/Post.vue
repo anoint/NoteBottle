@@ -1,4 +1,6 @@
 <template>
+  <v-app>
+    <v-container>
   <div class="div" >
     <v-card>
      <v-toolbar flat color="primary" dark>
@@ -37,6 +39,8 @@
     </v-tabs>
   </v-card>
   </div>
+    </v-container>
+  </v-app>
 </template>
 
 <script>

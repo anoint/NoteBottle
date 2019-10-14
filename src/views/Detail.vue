@@ -1,4 +1,6 @@
 <template>
+  <v-app>
+    <v-container>
   <div>
     <h3>{{posts.created_at}}</h3>
     <h2>{{posts.content}}</h2>
@@ -7,6 +9,8 @@
     </div>
     <a href="#" @click="logout">logout</a>
   </div>
+    </v-container>
+  </v-app>
 </template>
 <script>
 /* eslint-disable */

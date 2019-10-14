@@ -1,15 +1,15 @@
 <template>
   <div id="app" >
     <div class="main"> 
-      <h1 class="logo">NOTE BOTTLE</h1>
-      <div class="contents">
+      <h1 class="logo">NOTE BOTTLE  <v-icon style="color:#2196F3">mdi-message</v-icon> </h1>
+      <div class="contents override">
         <router-view ref="rView" style="margin:0 auto" />
       </div>
       <div class="gnb-right-wrap" v-if="$router.currentRoute.name!='login' && $router.currentRoute.name!='signup'"> 
 
         <!-- Navigation drawers -->
-        <v-card height="100%" dark style="z-index:1;">
-          <v-navigation-drawer absolute permanent right> 
+        <v-card height="100%" style="z-index:1;">
+          <v-navigation-drawer absolute permanent right dark style=" background-color:#1E88E5"> 
             <v-list style="height:100%">
               <v-list-item class="white-text" style="cursor:pointer" v-for="(item, index) in items" :key="item.title" :style="{height:(100/(items.length))+'%'}">
               <div style="margin: 0 auto" @click="gnb(item.name)" v-if="!($router.currentRoute.name=='home' && index===items.length-1)">
@@ -96,10 +96,8 @@ export default {
 </script>
 
 <style>
-.theme--light.v-card,
 .theme--light.v-navigation-drawer {
   cursor: pointer;
-  /* background-color: transparent !important; */
   color: #fff !important;
 }
 .font-white {
@@ -130,7 +128,6 @@ export default {
   width:91%;
   color:white;
   z-index: 2;
-  border:1px #e0e0e0 solid;
 }
 .gnb-right-wrap {
   position: fixed;
@@ -177,5 +174,8 @@ export default {
     left: 0;
     z-index: 1;
     background: rgba(0,0,0,.6);
+}
+.override .v-application--wrap {
+  min-height:1vh !important
 }
 </style>
