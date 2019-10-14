@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-container>
-      <vueper-slides :bullets=false>
+      <vueper-slides :bullets=false ref="slide">
         <vueper-slide v-for="(slide, i) in slides" :key="i" :image="imgItems[i % 4].src" >
           <div slot="slideContent">
             <div style="background:rgba(0,0,0,0.4);">
@@ -64,7 +64,10 @@ export default {
     }
   },
   mounted () {
-    this.postView()
+    this.postView(),
+    this.$on('prev',function(){
+       this.$refs.slide.previous()
+    })
   }
 }
 </script>

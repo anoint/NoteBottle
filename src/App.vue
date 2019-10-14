@@ -3,7 +3,7 @@
     <div class="main"> 
       <h1 class="logo">NOTE BOTTLE</h1>
       <div class="contents">
-        <router-view style="margin:0 auto" />
+        <router-view ref="rView" style="margin:0 auto" />
       </div>
       <div class="gnb-right-wrap" v-if="$router.currentRoute.name!='login' && $router.currentRoute.name!='signup'"> 
 
@@ -11,7 +11,7 @@
         <v-card height="100%" dark style="z-index:1;">
           <v-navigation-drawer absolute permanent right> 
             <v-list style="height:100%">
-              <v-list-item class="white-text" v-for="(item, index) in items" :key="item.title" :style="{height:(100/(items.length))+'%'}">
+              <v-list-item class="white-text" style="cursor:pointer" v-for="(item, index) in items" :key="item.title" :style="{height:(100/(items.length))+'%'}">
               <div style="margin: 0 auto" @click="gnb(item.name)" v-if="!($router.currentRoute.name=='home' && index===items.length-1)">
                 <v-list-item-icon>
                   <v-icon>{{ item.icon }}</v-icon>
@@ -20,7 +20,7 @@
                   <v-list-item-title>{{ item.title }}</v-list-item-title>
                 </v-list-item-content>
               </div>  
-              <div style="margin: 0 auto" v-if="$router.currentRoute.name=='home' && index===items.length-1">
+              <div style="margin: 0 auto" v-if="$router.currentRoute.name=='home' && index===items.length-1" @click="beforePost">
                 <v-list-item-icon>
                   <v-icon>mdi-undo</v-icon>
                 </v-list-item-icon>
@@ -79,6 +79,10 @@ export default {
           })
           this.routerName = name
       
+    },
+    beforePost()
+    {
+      this.$refs.rView.$emit('prev');
     }
   },
   mounted () {
