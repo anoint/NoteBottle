@@ -20,7 +20,8 @@ export default {
       this.$store.dispatch('logoutProcess').then(()=>{this.$router.push({name:'login'})})
     },
     postDetail() {
-      var id =this.$route.query.id;
+      // var id = this.$router.currentRoute.params.id;
+      var id = this.$route.params.id
       axios.get('http://notebottle.api.test/page/'+id)
         .then((result) => {
           this.posts = result.data;
@@ -36,3 +37,8 @@ export default {
   }
 }
 </script>
+<style scoped>
+h2,h2,div {
+  color: #111;
+}
+</style>

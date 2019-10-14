@@ -15,13 +15,13 @@
       <v-tab-item>
         <v-card flat>
           <v-card-text>
-            <v-card max-width="99.8%" class="mx-auto" v-for="(slide, i) in slides" :key="i" @click="postDetail(slide.id)">
+            <v-card max-width="99.8%" class="mx-auto" v-for="(slide, i) in slides" :key="i" >
                 <v-card-title>{{slide.dt}}</v-card-title>
-                <v-card-text>{{slide.content}}</v-card-text>
+                <v-card-text @click="postDetail(slide.id)">{{slide.content}}</v-card-text>
                 {{slide.id}}
                 <v-card-actions>
                   <v-btn text @click="goEdit(slide.id)">수정</v-btn>
-                  <v-btn text @click="postDelete()">삭제</v-btn>
+                  <v-btn text @click="postDelete(slide.id)">삭제</v-btn>
                 </v-card-actions>
               </v-card> 
           </v-card-text>
@@ -48,7 +48,7 @@ export default {
     }),
   methods: {
     postDetail(id) { 
-        this.$router.push({name:'detail',query:{id:id}})
+        this.$router.push({name:'detail',params:{id:id}})
     },
     postView () {
         var token = this.$store.state.auth.token;
